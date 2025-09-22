@@ -109,7 +109,6 @@ fetch('http://localhost:3000/films')
     if (films.length > 0) {
       displayFilmDetails(films[0]);
     }
-    
     quantityInput.oninput = () => {
       const qty = parseInt(quantityInput.value) || 1;
       totalPriceEl.textContent = `$${qty * ticketPrice}`;
