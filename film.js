@@ -60,7 +60,7 @@ fetch('http://localhost:3000/films')
 
       // Click on film title to display details
       li.addEventListener('click', e => {
-        if (e.target === deleteBtn) return; // Ignore if delete button clicked
+        if (e.target === deleteBtn) return; 
         displayFilmDetails(film);
       });
 
@@ -78,7 +78,6 @@ fetch('http://localhost:3000/films')
               if (movieList.firstChild) {
                 const firstFilmId = movieList.firstChild.dataset.id || null;
                 if (firstFilmId) {
-                  // Fetch that film and display
                   fetch(`http://localhost:3000/films/${firstFilmId}`)
                     .then(r => r.json())
                     .then(displayFilmDetails);
@@ -102,17 +101,15 @@ fetch('http://localhost:3000/films')
           .catch(err => alert('Error deleting film'));
       });
 
-      // Store film ID in li dataset for easy access
       li.dataset.id = film.id;
       movieList.appendChild(li);
     });
 
-    // Show first film details on load (if any)
+    // Show first film details on load
     if (films.length > 0) {
       displayFilmDetails(films[0]);
     }
-
-    // Update total price on quantity input change
+    
     quantityInput.oninput = () => {
       const qty = parseInt(quantityInput.value) || 1;
       totalPriceEl.textContent = `$${qty * ticketPrice}`;
